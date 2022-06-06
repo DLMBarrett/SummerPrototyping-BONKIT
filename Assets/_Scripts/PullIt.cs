@@ -31,6 +31,7 @@ public class PullIt : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(.5301f, .6555f, .9622f, 1);
+            gameObject.GetComponent<ParticleSystem>().Play();
             //CinemachineFunctions.Instance.ShakeCamera(2f);
         }
     }

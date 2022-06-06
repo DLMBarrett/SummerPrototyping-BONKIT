@@ -28,7 +28,8 @@ public class TwistIt : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .8111f, .4345f, 1);
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(.5301f, .6555f, .9622f, 1);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .7333f, .4345f, 1);
+            gameObject.GetComponent<ParticleSystem>().Play();
             //CinemachineFunctions.Instance.ShakeCamera(2f);
         }
     }
