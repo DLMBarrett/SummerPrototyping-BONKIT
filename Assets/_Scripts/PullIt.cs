@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PullIt : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PullIt : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        
+        CinemachineFunctions.Instance.ShakeCamera(2f);
     }
 
     private void OnMouseOver()
@@ -31,6 +32,7 @@ public class PullIt : MonoBehaviour
 
     private void OnMouseExit()
     {
+        CinemachineFunctions.Instance.ShakeCamera(0f);
         gameObject.GetComponent<SpriteRenderer>().color = originalColor;
     }
 
