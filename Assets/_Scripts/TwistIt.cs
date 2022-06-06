@@ -5,6 +5,7 @@ using UnityEngine;
 public class TwistIt : MonoBehaviour
 {
     Color originalColor;
+    public BopItAnimations bIA;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +21,13 @@ public class TwistIt : MonoBehaviour
 
     private void OnMouseEnter()
     {
-
+        bIA.playTwistAnimation();
     }
 
     private void OnMouseOver()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .8111f, .4345f, 1);
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetMouseButtonDown(0))
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .7333f, .4345f, 1);
             gameObject.GetComponent<ParticleSystem>().Play();
@@ -37,6 +38,7 @@ public class TwistIt : MonoBehaviour
     private void OnMouseExit()
     {
         //CinemachineFunctions.Instance.ShakeCamera(0f);
+        bIA.stopTwistAnimation();
         gameObject.GetComponent<SpriteRenderer>().color = originalColor;
     }
 }
