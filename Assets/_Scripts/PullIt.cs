@@ -44,6 +44,7 @@ public class PullIt : MonoBehaviour
             bIA.playPullAnimation();
             gameObject.GetComponent<SpriteRenderer>().color = new Color(.5301f, .6555f, .9622f, 1);
             gameObject.GetComponent<ParticleSystem>().Play();
+            Invoke("stopAnim", .8f);
             
             //CinemachineFunctions.Instance.ShakeCamera(2f);
         }
@@ -57,6 +58,11 @@ public class PullIt : MonoBehaviour
             bIA.stopPullAnimation();
             gameObject.GetComponent<SpriteRenderer>().color = originalColor;
         }
+    }
+
+    private void stopAnim()
+    {
+        bIA.stopPullAnimation();
     }
 
 }

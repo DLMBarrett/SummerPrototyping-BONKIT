@@ -44,6 +44,8 @@ public class TwistIt : MonoBehaviour
                 bIA.playTwistAnimation();
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .7333f, .4345f, 1);
                 gameObject.GetComponent<ParticleSystem>().Play();
+                Invoke("stopAnim", .8f);
+
                 //CinemachineFunctions.Instance.ShakeCamera(2f);
             }
         }
@@ -58,4 +60,10 @@ public class TwistIt : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = originalColor;
         }
     }
+
+    private void stopAnim()
+    {
+        bIA.stopTwistAnimation();
+    }
+
 }
