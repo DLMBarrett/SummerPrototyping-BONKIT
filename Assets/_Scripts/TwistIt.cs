@@ -6,6 +6,7 @@ public class TwistIt : MonoBehaviour
 {
     Color originalColor;
     public BopItAnimations bIA;
+    bool enabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -16,29 +17,45 @@ public class TwistIt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.T) && enabled)
+        {
+            bIA.enabled = false;
+            enabled = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.T) && !enabled)
+        {
+            bIA.enabled = true;
+            enabled = true;
+        }
     }
 
     private void OnMouseEnter()
     {
-        bIA.playTwistAnimation();
+        
     }
 
     private void OnMouseOver()
     {
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .8111f, .4345f, 1);
-        if (Input.GetMouseButtonDown(0))
+        if (enabled)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .7333f, .4345f, 1);
-            gameObject.GetComponent<ParticleSystem>().Play();
-            //CinemachineFunctions.Instance.ShakeCamera(2f);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .8111f, .4345f, 1);
+            if (Input.GetMouseButtonDown(0))
+            {
+                bIA.playTwistAnimation();
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .7333f, .4345f, 1);
+                gameObject.GetComponent<ParticleSystem>().Play();
+                //CinemachineFunctions.Instance.ShakeCamera(2f);
+            }
         }
     }
 
     private void OnMouseExit()
     {
-        //CinemachineFunctions.Instance.ShakeCamera(0f);
-        bIA.stopTwistAnimation();
-        gameObject.GetComponent<SpriteRenderer>().color = originalColor;
+        if (enabled)
+        { 
+            //CinemachineFunctions.Instance.ShakeCamera(0f);
+            bIA.stopTwistAnimation();
+            gameObject.GetComponent<SpriteRenderer>().color = originalColor;
+        }
     }
 }

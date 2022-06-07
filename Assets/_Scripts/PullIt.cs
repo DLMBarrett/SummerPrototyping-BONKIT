@@ -7,6 +7,7 @@ public class PullIt : MonoBehaviour
 {
     public BopItAnimations bIA;
     Color originalColor;
+    bool enabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -17,19 +18,30 @@ public class PullIt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P) && enabled)
+        {
+            bIA.enabled = false;
+            enabled = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.P) && !enabled)
+        {
+            bIA.enabled = true;
+            enabled = true;
+        }
     }
 
     private void OnMouseEnter()
     {
-        bIA.playPullAnimation();
+        
     }
 
     private void OnMouseOver()
     {
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(.5301f, .7222f, .9622f, 1);
-        if (Input.GetMouseButtonDown(0))
+        if (enabled)
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(.5301f, .7222f, .9622f, 1);
+        if (Input.GetMouseButtonDown(0) && enabled)
         {
+            bIA.playPullAnimation();
             gameObject.GetComponent<SpriteRenderer>().color = new Color(.5301f, .6555f, .9622f, 1);
             gameObject.GetComponent<ParticleSystem>().Play();
             
@@ -40,8 +52,11 @@ public class PullIt : MonoBehaviour
     private void OnMouseExit()
     {
         //CinemachineFunctions.Instance.ShakeCamera(0f);
-        bIA.stopPullAnimation();
-        gameObject.GetComponent<SpriteRenderer>().color = originalColor;
+        if (enabled)
+        {
+            bIA.stopPullAnimation();
+            gameObject.GetComponent<SpriteRenderer>().color = originalColor;
+        }
     }
 
 }
