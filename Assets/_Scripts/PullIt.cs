@@ -8,6 +8,7 @@ public class PullIt : MonoBehaviour
     public BopItAnimations bIA;
     Color originalColor;
     bool enabled = true;
+    public AudioSource pullItSfx;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class PullIt : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = new Color(.5301f, .7222f, .9622f, 1);
         if (Input.GetMouseButtonDown(0) && enabled)
         {
+            pullItSfx.Play();
             bIA.playPullAnimation();
             gameObject.GetComponent<SpriteRenderer>().color = new Color(.5301f, .6555f, .9622f, 1);
             gameObject.GetComponent<ParticleSystem>().Play();

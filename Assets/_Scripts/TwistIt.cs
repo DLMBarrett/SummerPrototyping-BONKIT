@@ -7,6 +7,7 @@ public class TwistIt : MonoBehaviour
     Color originalColor;
     public BopItAnimations bIA;
     bool enabled = true;
+    public AudioSource twistItSfx;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class TwistIt : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .8111f, .4345f, 1);
             if (Input.GetMouseButtonDown(0))
             {
+                twistItSfx.Play();
                 bIA.playTwistAnimation();
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(.9716f, .7333f, .4345f, 1);
                 gameObject.GetComponent<ParticleSystem>().Play();
